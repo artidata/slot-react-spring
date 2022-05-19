@@ -4,7 +4,8 @@ export default function App() {
   const styles = useSpring({
     loop: { reverse: true },
     from: { x: 0 },
-    to: { x: 100 }
+    to: { x: 100 },
+    config: { duration: 1000 }
   });
 
   return (
