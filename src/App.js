@@ -1,16 +1,20 @@
+import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 
 export default function App() {
+  const [spin, set] = useState(false);
   const styles = useSpring({
-    loop: { reverse: true },
-    from: { x: 0 },
-    to: { x: 100 },
+    to: { x: spin ? 100 : 0 },
     config: { duration: 1000 }
   });
 
+  const handleSpin = () => {
+    set(!spin);
+  };
+
   return (
     <>
-      <button>spin</button>
+      <button onClick={handleSpin}>spin</button>
       <animated.div
         style={{
           width: 80,
