@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/web";
 
 export default function App() {
   const [spin, set] = useState(false);
+  const end = useRef(0);
   const styles = useSpring({
-    to: { x: spin ? 100 : 0 },
+    to: { x: end.current },
     config: { duration: 1000 }
   });
 
   const handleSpin = () => {
     set(!spin);
+    end.current = end.current + 100;
   };
 
   return (
