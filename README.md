@@ -1,2 +1,2 @@
 # slot-react-spring
-Created with CodeSandbox
+Slot machine prototype with React Spring.
