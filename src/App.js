@@ -15,10 +15,13 @@ export default function App() {
   });
 
   const handleSpin = () => {
-    setKeys((prev) => Array.from(Array(15), (_, x) => x - 14 + prev[4]));
+    const rand = Math.ceil(Math.random() * 5);
+    setKeys((prev) =>
+      Array.from(Array(15 + rand), (_, x) => x - (14 + rand) + prev[4])
+    );
     set(!spin);
     setDisabled(true);
-    end.current = end.current + 800;
+    end.current = end.current + 800 + rand * 80;
   };
 
   return (
