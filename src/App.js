@@ -45,6 +45,18 @@ export default function App() {
               }}
             />
           ))}
+          {!disabled && (
+            <div
+              style={{
+                position: "absolute",
+                width: 60,
+                height: 60,
+                top: 5,
+                left: keys[2] * 80 + 5,
+                border: "5px solid #e31a1c"
+              }}
+            />
+          )}
         </animated.div>
       </div>
     </>
