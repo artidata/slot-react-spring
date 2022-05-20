@@ -6,21 +6,26 @@ const colors = ["#5778a4", "#e49444", "#d1615d", "#85b6b2", "#6a9f58"];
 export default function App() {
   const [keys, setKeys] = useState([0, 1, 2, 3, 4]);
   const [spin, set] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const end = useRef(0);
   const styles = useSpring({
     to: { x: end.current },
-    config: { duration: 1000 }
+    config: { duration: 1000 },
+    onRest: () => setDisabled(false)
   });
 
   const handleSpin = () => {
     setKeys((prev) => Array.from(Array(10), (_, x) => x - 9 + prev[4]));
     set(!spin);
+    setDisabled(true);
     end.current = end.current + 400;
   };
 
   return (
     <>
-      <button onClick={handleSpin}>spin</button>
+      <button disabled={disabled} onClick={handleSpin}>
+        spin
+      </button>
       <div style={{ width: 400, overflow: "clip" }}>
         <animated.div style={{ position: "relative", height: 80, ...styles }}>
           {keys.map((val) => (
