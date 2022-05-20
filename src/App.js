@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/web";
 
-const colors = ["#a6cee3", "#b2df8a", "#fb9a99", "#fdbf6f", "#cab2d6"];
 const prizes = [
   {
     color: "#a6cee3",
