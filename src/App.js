@@ -10,15 +10,15 @@ export default function App() {
   const end = useRef(0);
   const styles = useSpring({
     to: { x: end.current },
-    config: { duration: 1000 },
+    config: { duration: 1600 },
     onRest: () => setDisabled(false)
   });
 
   const handleSpin = () => {
-    setKeys((prev) => Array.from(Array(10), (_, x) => x - 9 + prev[4]));
+    setKeys((prev) => Array.from(Array(15), (_, x) => x - 14 + prev[4]));
     set(!spin);
     setDisabled(true);
-    end.current = end.current + 400;
+    end.current = end.current + 800;
   };
 
   return (
