@@ -2,8 +2,32 @@ import { useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/web";
 
 const colors = ["#a6cee3", "#b2df8a", "#fb9a99", "#fdbf6f", "#cab2d6"];
+const prizes = [
+  {
+    color: "#a6cee3",
+    value: 400
+  },
+  {
+    color: "#b2df8a",
+    value: 200
+  },
+  {
+    color: "#fb9a99",
+    value: 0
+  },
+  {
+    color: "#fdbf6f",
+    value: 100
+  },
+  {
+    color: "#cab2d6",
+    value: 800
+  }
+];
 
 export default function App() {
+  const [total, setTotal] = useState(0);
+
   const [keys, setKeys] = useState([0, 1, 2, 3, 4]);
   const [spin, set] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -11,7 +35,10 @@ export default function App() {
   const styles = useSpring({
     to: { x: end.current },
     config: { duration: 1600 },
-    onRest: () => setDisabled(false)
+    onRest: () => {
+      setDisabled(false);
+      setTotal((prev) => prev + prizes.at(keys[2] % 5).value);
+    }
   });
 
   const handleSpin = () => {
@@ -42,10 +69,15 @@ export default function App() {
                 height: 70,
                 top: 5,
                 left: val * 80 + 5,
-                backgroundColor: colors.at(val % 5),
-                borderRadius: 10
+                backgroundColor: prizes.at(val % 5).color,
+                borderRadius: 10,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
               }}
-            />
+            >
+              {prizes.at(val % 5).value}
+            </div>
           ))}
           {!disabled && (
             <div
@@ -61,6 +93,7 @@ export default function App() {
           )}
         </animated.div>
       </div>
+      <div>{`Total Prize: ${total}`}</div>
     </>
   );
 }
