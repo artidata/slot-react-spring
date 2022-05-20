@@ -15,7 +15,9 @@ export default function App() {
   });
 
   const handleSpin = () => {
-    const rand = Math.ceil(Math.random() * 5);
+    const rand = Math.ceil(
+      (crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32) * 5
+    );
     setKeys((prev) =>
       Array.from(Array(15 + rand), (_, x) => x - (14 + rand) + prev[4])
     );
